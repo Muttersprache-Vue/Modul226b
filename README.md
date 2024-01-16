@@ -1,1 +1,3 @@
-# Modul226b
+# Dart Shooter
+
+Game for Modul 226b
