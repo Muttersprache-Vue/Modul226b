@@ -27,6 +27,6 @@ public class MyWorld extends World
     private void prepare()
     {
         dartboard dartboard = new dartboard();
-        addObject(dartboard,615,191);
+        addObject(dartboard,615,191);       
     }
 }
