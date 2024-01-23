@@ -19,6 +19,10 @@ public class dart extends Actor
     
     public void act() 
     {
-        // Add your action code here.
+        if (isTouching(dartboard.class))
+        {
+            Counter counter = (Counter) getWorld().getObjects(Counter.class).get(0);
+            counter.add(1);
+        }
     }    
 }

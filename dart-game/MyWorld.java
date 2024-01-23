@@ -40,5 +40,7 @@ public class MyWorld extends World
         addObject(versüche5,1048,510);
         Versüche versüche6 = new Versüche();
         addObject(versüche6,1043,511);
+        Counter counter = new Counter();
+        addObject(counter,1145,25);
     }
 }
