@@ -13,10 +13,13 @@ public class Zielvisier extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    private int minX = 100;
-    private int maxX = 500;
+    private int minX = 400;
+    private int maxX = 800;
     private int minY = 100;
     private int maxY = 400;
+    private boolean istAngehalten = false;
+    private int delayCounter = 0;
+    private int zielvisierX, zielvisierY;
     
     public Zielvisier()
     {
@@ -26,7 +29,25 @@ public class Zielvisier extends Actor
     public void act()
     {
         // Add your action code here.
-        zufaelligBewegen();
+        if(Greenfoot.isKeyDown("space") && !istAngehalten) {
+            istAngehalten = true;
+            //System.out.println("Zielvisier X: " + getX());
+            //System.out.println("Zielvisier Y: " + getY());
+            //zielvisierX = getX();
+            //zielvisierY = getY();
+            dart dart = new dart(getX(), getY());
+            getWorld().addObject(dart, 500, 250);
+        }
+        
+        if(!istAngehalten)
+        {
+            if(delayCounter <= 0) {
+            zufaelligBewegen();
+            delayCounter = 30;
+        } else {
+            delayCounter--;
+        }
+        }
     }
     
     public void zufaelligBewegen()
@@ -34,6 +55,5 @@ public class Zielvisier extends Actor
         int zufaelligeXPosition = Greenfoot.getRandomNumber(maxX - minX) + minX;
         int zufaelligeYPosition = Greenfoot.getRandomNumber(maxY - minY) + minY;
         setLocation(zufaelligeXPosition, zufaelligeYPosition);
-        Greenfoot.delay(30);
     }
 }
