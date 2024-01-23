@@ -35,6 +35,12 @@ public class dart extends Actor
             bewegeZuZiel();
             gestartet = true;
         }
+        
+        //if (isTouching(dartboard.class))
+        //{
+        //    Counter counter = (Counter) getWorld().getObjects(Counter.class).get(0);
+        //    counter.add(1);
+        //}
     }
     
     private void bewegeZuZiel()
