@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class MyWorld here.
@@ -8,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    private int verbleibendeVersuche = 6;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -26,21 +28,51 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        dartboard dartboard = new dartboard();
-        addObject(dartboard,615,191);       
-        Versüche versüche = new Versüche();
-        addObject(versüche,1035,475);
-        Versüche versüche2 = new Versüche();
-        addObject(versüche2,1028,463);
-        Versüche versüche3 = new Versüche();
-        addObject(versüche3,1038,488);
-        Versüche versüche4 = new Versüche();
-        addObject(versüche4,1043,499);
-        Versüche versüche5 = new Versüche();
-        addObject(versüche5,1048,510);
-        Versüche versüche6 = new Versüche();
-        addObject(versüche6,1043,511);
-        Counter counter = new Counter();
-        addObject(counter,1145,25);
+        //füge Dartboard der Welt hinzu
+        Dartboard dartboard = new Dartboard();
+        addObject(dartboard, 615, 191);
+        
+        //füge 6 Versuche der Welt hinzu
+        for(int i = 0; i < verbleibendeVersuche; i++) {
+            Versuch versuch = new Versuch();
+            addObject(versuch, 1020 + i * 10, 475);
+        }
+        
+        //füge Zielvisier initial im Mittelpunkt des Dartboards hinzu
+        Zielvisier zielvisier = new Zielvisier();
+        addObject(zielvisier,617,186);
+    }
+    
+    //Methode entferntVersuch() entfernt ein Versuchpfeil-Objekt aus der Liste
+    public void entferneVersuch() {
+        if(verbleibendeVersuche > 0) 
+        {
+            verbleibendeVersuche--;
+            //erzeuge Liste mit Versuchspfeilen
+            List<Versuch> versucheListe = getObjects(Versuch.class);
+            //solange nicht Liste mit Versuchspfeilen leer ist, entfern ein Versuchspfeil-Objekt aus der Liste
+            if(!versucheListe.isEmpty()) {
+                removeObject(versucheListe.get(0));
+            }
+            //wenn Liste leer, dann Spielreset
+            if(verbleibendeVersuche == 0) {
+                Greenfoot.delay(50);
+                spielReset();
+            }
+        }
+    }
+    
+    private void spielReset() 
+    {
+        //alle Objekte auf Welt entfernen
+        entferneAlleObjekte();
+        //Welt neu bauen
+        prepare();
+    }
+    
+    //Methode entferneAlleObjekte() entfernt alle Objekte auf Welt
+    private void entferneAlleObjekte() 
+    {
+        removeObjects(getObjects(null));
     }
 }
