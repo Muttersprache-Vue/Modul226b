@@ -31,6 +31,12 @@ public class Dart extends Actor
             //bewegeZuZiel()-Methode in act()-Methode aufrufen um flüssige Bewegung des Pfeils zu bewerkstelligen
             bewegeZuZiel();
         }
+        
+        if (isTouching(Dartboard.class))
+        {
+            Counter counter = (Counter) getWorld().getObjects(Counter.class).get(0);
+            //counter.add(1);
+        }
     }
     
     //Methode bewegeZuZiel() schickt den Pfeil in Richtung Mittelpunkt des Zielvisiers

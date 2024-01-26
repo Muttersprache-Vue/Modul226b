@@ -31,16 +31,19 @@ public class MyWorld extends World
         //füge Dartboard der Welt hinzu
         Dartboard dartboard = new Dartboard();
         addObject(dartboard, 615, 191);
-        
+
         //füge 6 Versuche der Welt hinzu
         for(int i = 0; i < verbleibendeVersuche; i++) {
             Versuch versuch = new Versuch();
             addObject(versuch, 1020 + i * 10, 475);
         }
-        
+
         //füge Zielvisier initial im Mittelpunkt des Dartboards hinzu
         Zielvisier zielvisier = new Zielvisier();
         addObject(zielvisier,617,186);
+        //füge Counter hinzu oben rechts
+        Counter counter = new Counter();
+        addObject(counter,1138,29);
     }
     
     //Methode entferntVersuch() entfernt ein Versuchpfeil-Objekt aus der Liste
