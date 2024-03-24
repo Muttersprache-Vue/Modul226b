@@ -28,7 +28,6 @@ public class Zielvisier extends Actor
     
     public void act()
     {
-        // Add your action code here.
         // wenn Leertaste gedrückt wird und Spiel wurde noch nicht angehalten
         if(Greenfoot.isKeyDown("space") && !istAngehalten) {
             //boolean istAngehalten wird auf true gesetzt, Spiel wird angehalten
